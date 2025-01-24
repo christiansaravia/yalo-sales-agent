@@ -16,10 +16,10 @@ function SessionStopped({ startSession }) {
     <div className="flex items-center justify-center w-full h-full">
       <Button
         onClick={handleStartSession}
-        className={isActivating ? "bg-gray-600" : "bg-red-600"}
+        className={isActivating ? "bg-gray-600" : "bg-green-600"}
         icon={<PhoneCall height={16} />}
       >
-        {isActivating ? "Calling Yalo's Sales Agent..." : "Call Yalo's Sales Agent"}
+        {isActivating ? "Calling Nati..." : "Call Nati"}
       </Button>
     </div>
   );

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import logo from "/assets/yalo-logo.svg";
+import logo from "/assets/logo.svg";
 import EventLog from "./EventLog";
 import SessionControls from "./SessionControls";
-import ToolPanel from "./ToolPanel";
+import ToolPanel from "./ToolPanel"; 
+import CartPanel from "./CartPanel";
+import ProductCatalog from "./ProductCatalog";
 
 export default function App() {
   const [isSessionActive, setIsSessionActive] = useState(false);
@@ -127,12 +129,15 @@ export default function App() {
     <>
       <nav className="absolute top-0 left-0 right-0 h-16 flex items-center">
         <div className="flex items-center gap-4 w-full m-4 pb-2 border-0 border-b border-solid border-gray-200">
-          <img style={{ width: "40px" }} src={logo} />
-          <h1>Sales Agent</h1>
+          <img style={{ width: "60px" }} src={logo} />
+          {/* <h1>Sales Agent</h1> */}
         </div>
       </nav>
       <main className="absolute top-16 left-0 right-0 bottom-0">
-        <section className="absolute top-0 left-0 right-[50%] bottom-0 flex">
+        <section className="absolute top-0 left-0 w-1/3 bottom-0 p-4">
+          <ProductCatalog />
+        </section>
+        <section className="absolute top-0 left-1/3 w-1/3 bottom-0 flex">
           <section className="absolute top-0 left-0 right-0 bottom-32 px-4 overflow-y-auto">
             <EventLog events={events} />
           </section>
@@ -147,8 +152,8 @@ export default function App() {
             />
           </section>
         </section>
-        <section className="absolute top-0 w-[50%] right-0 bottom-0 p-4 pt-0 overflow-y-auto">
-          <ToolPanel
+        <section className="absolute top-0 w-1/3 right-0 bottom-0 p-4 pt-0 overflow-y-auto">
+          <CartPanel
             sendClientEvent={sendClientEvent}
             sendTextMessage={sendTextMessage}
             events={events}
