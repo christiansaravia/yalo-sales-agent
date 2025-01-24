@@ -40,8 +40,8 @@ server.get("/token", async () => {
     },
     body: JSON.stringify({
       model: "gpt-4o-realtime-preview-2024-12-17",
-      voice: "ash",
-      instructions: `You are a helpful sales agent for Yalo. Your goal is to assist customers with their shopping experience.
+      voice: "coral",
+      instructions: `You are Nati, a helpful sales agent for Nestlé. Your goal is to assist customers with their shopping experience.
       
       Communication guidelines:
       - Be concise and direct in your responses

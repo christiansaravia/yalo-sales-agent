@@ -5,6 +5,8 @@ import SessionControls from "./SessionControls";
 import ToolPanel from "./ToolPanel"; 
 import CartPanel from "./CartPanel";
 import ProductCatalog from "./ProductCatalog";
+import nati from "/assets/nati.png";
+import yaloLogo from "/assets/yalo-logo.svg";
 
 export default function App() {
   const [isSessionActive, setIsSessionActive] = useState(false);
@@ -137,22 +139,47 @@ export default function App() {
         <section className="absolute top-0 left-0 w-1/3 bottom-0 p-4">
           <ProductCatalog />
         </section>
-        <section className="absolute top-0 left-1/3 w-1/3 bottom-0 flex">
-          <section className="absolute top-0 left-0 right-0 bottom-32 px-4 overflow-y-auto">
-            <EventLog events={events} />
+        <section className="absolute top-0 left-1/3 w-1/3 bottom-0 flex flex-col">
+          <section className="h-[30%] px-4">
+            <div className="w-full h-full flex items-center justify-center">
+              <img 
+                src={nati} 
+                alt="Nati"
+                className="h-full object-cover rounded-full aspect-square border-4 border-gray-200"
+              />
+            </div>
           </section>
-          <section className="absolute h-32 left-0 right-0 bottom-0 p-4">
-            <SessionControls
-              startSession={startSession}
-              stopSession={stopSession}
-              sendClientEvent={sendClientEvent}
-              sendTextMessage={sendTextMessage}
-              events={events}
-              isSessionActive={isSessionActive}
-            />
+          <section className="h-[70%] flex flex-col">
+            <section className="flex-1 px-4 overflow-y-auto">
+              <EventLog events={events} />
+            </section>
+            <section className="h-32 p-4">
+              <SessionControls
+                startSession={startSession}
+                stopSession={stopSession}
+                sendClientEvent={sendClientEvent}
+                sendTextMessage={sendTextMessage}
+                events={events}
+                isSessionActive={isSessionActive}
+              />
+            </section>
+            <div className="text-center text-black-400 text-sm pb-2 flex items-center justify-center gap-1">
+              Powered by 
+              <a 
+                href="https://yalo.ai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <img 
+                  src={yaloLogo} 
+                  alt="Yalo" 
+                  className="h-4 inline-block"
+                />
+              </a>
+            </div>
           </section>
         </section>
-        <section className="absolute top-0 w-1/3 right-0 bottom-0 p-4 pt-0 overflow-y-auto">
+        <section className="absolute top-0 w-1/3 right-0 bottom-0 p-4 overflow-y-auto">
           <CartPanel
             sendClientEvent={sendClientEvent}
             sendTextMessage={sendTextMessage}
