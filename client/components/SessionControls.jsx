@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CloudLightning, CloudOff, MessageSquare } from "react-feather";
+import { PhoneCall, CloudOff, MessageSquare } from "react-feather";
 import Button from "./Button";
 
 function SessionStopped({ startSession }) {
@@ -17,9 +17,9 @@ function SessionStopped({ startSession }) {
       <Button
         onClick={handleStartSession}
         className={isActivating ? "bg-gray-600" : "bg-red-600"}
-        icon={<CloudLightning height={16} />}
+        icon={<PhoneCall height={16} />}
       >
-        {isActivating ? "starting session..." : "start session"}
+        {isActivating ? "Calling Yalo's Sales Agent..." : "Call Yalo's Sales Agent"}
       </Button>
     </div>
   );
