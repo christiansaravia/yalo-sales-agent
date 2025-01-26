@@ -18,7 +18,7 @@ const sessionUpdate = {
           properties: {
             action: {
               type: "string",
-              enum: ["add", "remove", "clear"],
+              enum: ["add", "remove", "clear", "update"],
               description: "Action to perform on the cart",
             },
             product: {
@@ -101,7 +101,7 @@ export default function CartPanel({ isSessionActive, sendClientEvent, events }) 
           
           if (action === "clear") {
             setCart([]);
-          } else if (action === "add" && product) {
+          } else if (action === "add" || action === "update" && product) {
             setCart(prevCart => {
               const existingItem = prevCart.find(item => item.sku === product.sku);
               const price = typeof product.price === 'string' ? parseFloat(product.price) : product.price;
@@ -109,7 +109,7 @@ export default function CartPanel({ isSessionActive, sendClientEvent, events }) 
               if (existingItem) {
                 return prevCart.map(item => 
                   item.sku === product.sku 
-                    ? { ...item, quantity: item.quantity + product.quantity }
+                    ? { ...item, quantity: action === "update" ? product.quantity : item.quantity + product.quantity }
                     : item
                 );
               }
@@ -118,6 +118,14 @@ export default function CartPanel({ isSessionActive, sendClientEvent, events }) 
           } else if (action === "remove" && product) {
             setCart(prevCart => prevCart.filter(item => item.sku !== product.sku));
           }
+          
+          // Prompt the assistant to continue after cart update
+          sendClientEvent({
+            type: "response.create",
+            response: {
+              instructions: "Acknowledge the cart update and ask if the customer needs anything else."
+            }
+          });
         }
       });
     }
